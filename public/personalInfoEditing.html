@@ -1,0 +1,137 @@
+<!doctype html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=0.8, width=device-width, shrink-to-fit=no">
+
+  <title>帳號實名管理</title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link href="css/personalInfoEditing.css" rel="stylesheet">
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+
+  <script src="https://www.gstatic.com/firebasejs/7.13.1/firebase.js"
+    integrity="sha384-TBcdbu1ltWym/ugy+ntdR2Yw2SA+KxICqexo1k5QX6MjYxVu46wXIsj4Q7AUxMVd"
+    crossorigin="anonymous"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-app.js"
+    integrity="sha384-Q4E1UXigqkyjIO3F08vSWRbT0b+oTUY1GwLa5BuoAZkCcxzitThNAKOleFuVCXMG"
+    crossorigin="anonymous"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-auth.js"
+    integrity="sha384-NdaijmMO+EKSEeACesQmcrMQPyy2ihCAxHoVXavwOqb5aGLnwrv3uIp4R8pu+JOB"
+    crossorigin="anonymous"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-database.js"
+    integrity="sha384-XFOI5tKuQHNGDynfgKOkkMTUEK+ziHYA/mm3AniMBbEprfBitGIxO9Zb40W8vmFs"
+    crossorigin="anonymous"></script>
+
+  <script src="js/config.js"></script>
+  <script src="js/personalInfoEditing.js"></script>
+</head>
+
+
+
+<div class="container">
+
+  <body class="text-center col-sm-12">
+    <div class="Form">
+      <h4 class="h4 mb-5 font-weight-normal">NTHU YOGA 帳號實名管理</h4>
+      <!-- <h6 class="h6 text-muted font-weight-light">請稍等3秒，若有成功登入，系統將會自動跳轉</h6> -->
+      <br>
+
+      <div class="card text-center">
+        <div class="card-body">
+          <!-- <h5 class="card-title">NTHU YOGA 帳號實名管理</h5> -->
+          <a class="card-text">
+            <form>
+              <div class="form-group row">
+                <label for="studentID" class="form-control-lg col-sm-2 col-form-label">學號/<br>員編</label>
+                <input type="text" class="form-control col-sm-10" id="studentID" placeholder="範例：108012103">
+              </div>
+
+
+              <div class="form-group row">
+                <label for="xiJi" class="form-control-lg col-sm-2 col-form-label">系級/<br>服務單位</label>
+                <!-- <small id="xiJiHint" class="form-text text-muted">請依照範例，填寫「完整」！</small>
+              <small id="xiJiHint" class="form-text text-muted">教職員工請填寫「教職員工」。校外人士（含交大）請填寫「校外人士」。</small> -->
+                <input type="text" class="form-control col-sm-10" id="xiJi"
+                  placeholder="範例：資工系3年級梅班；醫環系博士班產業組；科管院學士班1年級">
+              </div>
+
+              <div class="form-group row">
+                <label for="realName" class="form-control-lg col-sm-2 col-form-label">姓名</label>
+                <input type="text" class="form-control col-sm-10" id="realName" placeholder="範例：王大花">
+              </div>
+
+              <div class="form-group row">
+                <label for="phoneNumber" class="form-control-lg col-sm-2 col-form-label">手機</label>
+                <input type="text" class="form-control col-sm-10" id="phoneNumber" placeholder="範例：0920089123">
+              </div>
+
+              <div class="form-group row">
+                <small id="studentIDHint1_title" class="form-text text-muted col-sm-2 col-form-label">備註1</small>
+                <small id="studentIDHint1_content"
+                  class="form-text text-muted col-sm-10 col-form-label">若您非本學年度於國立清華大學「註冊在籍的教職員工生」，請依序填寫"987654321"、「校外人士」。</small>
+                <small id="studentIDHint2_title" class="form-text text-muted col-sm-2 col-form-label">備註2</small>
+                <small id="studentIDHint2_content" class="form-text text-muted col-sm-10 col-form-label">請勿填入任何空格！ It's
+                  strictly required to put your first & last name
+                  TOGETHER withOUT any blankspace inbetween.</small>
+              </div>
+
+
+              <br>
+              <div class="form-group row">
+                <label for="studentID_and_xiJi_and_realname" class="form-control-lg col-sm-2 col-form-label">請確認</label>
+                <!-- <small id="studentID_and_xiJi_and_realnameHint"
+                  class="form-text text-muted">請確認以下兩格資訊是否正確。若有誤，請回頭修改您填答的內容。</small> -->
+                <input type="text" class="form-control col-sm-10" id="studentID_and_xiJi_and_realname"
+                  placeholder="等待填寫" readonly>
+
+                <label for="phoneNumber_check" class="form-control-lg col-sm-2 col-form-label">請確認</label>
+                <input type="text" class="form-control col-sm-10" id="phoneNumber_check" placeholder="等待填寫" readonly>
+              </div>
+
+              <button class="btn btn-primary" id="submitBut" type="button">我已確認填寫正確，確認送出！</button>
+              <br>
+              <br>
+              <button class="btn btn-primary" id="backToHomePage" type="button">按此按鈕以跳轉回社團系統首頁</button>
+
+            </form>
+
+          </a>
+        </div>
+
+
+
+        <!-- <div class="card-footer text-muted">
+
+      </div> -->
+      </div>
+
+
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+  </body>
+</div>
+
+
+
+</html>
